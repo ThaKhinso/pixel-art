@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Pixel Art</title>
+    <style type="text/tailwindcss">
+       
+
+    </style>
+</head>
+<body>
+    <h1 class="w-full text-center my-5 font-bold">Pixel Art</h1>
+    <div class="flex flex- w-[70vw] h-[81vh] mx-auto my-10">
+        <div class=" mr-8">
+            <label for="boardSize" class="block mb-2">Board Size</label>     
+            <input class="w-[300px]" type="range" name="size" id="boardSize" min="16" max="256" value="64"/>
+            <label>Choose An Color:</label>
+            <label for="color-picker" class="text-center text-white border-1 border-black block w-full h-8 rounded-xl cursor-pointer">
+                <input 
+                id="color-picker"  
+                type="color"
+                value="#FFFFFF"
+                class="sr-only"/>
+
+            </label><br>
+            <button type="button" class="w-full border-1 rounded-xl bg-red-200" onclick="clearBoard()">Clear</button>
+        </div>
+        <div id="board-container" class=" w-full h-full">
+            <div id="grid"></div>
+        </div>
+    </div>
+</body>
+<script src="./script.js"></script>
+</html>
