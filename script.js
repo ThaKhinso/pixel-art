@@ -75,10 +75,44 @@ function createBoard(size){
             // event.target.style.backgroundColor = getCurrentColor();
         })
         grid.appendChild(gridItem);
-    }
+    } 
     boardContainer.appendChild(grid)
 }
 
 function clearBoard(){
     createBoard(BOARD_SIZE);
+}
+
+function exportImage() {
+    const gridItems = document.querySelectorAll("#grid > div");
+    const x = Math.sqrt(gridItems.length); // Get the number of pixels per side
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    const exportSize = 512;
+    const pixelSize = exportSize/x;
+
+    canvas.width = exportSize;
+    canvas.height = exportSize;
+
+    gridItems.forEach((item, index) => {
+        const row = Math.floor(index / x);
+        const col = index % x;
+        
+        // Use the background color of the div, default to white if empty
+        // ctx.fillStyle = item.style.backgroundColor || "#ffffff";
+        
+        // Draw the "pixel" on the canvas
+        // ctx.fillRect(col * pixelSize, row * pixelSize, pixelSize, pixelSize);
+
+        if (item.style.backgroundColor && item.style.backgroundColor !== "") {
+            ctx.fillStyle = item.style.backgroundColor;
+            ctx.fillRect(col * pixelSize, row * pixelSize, pixelSize, pixelSize);
+        }
+    });
+
+    const link = document.createElement("a");
+    link.download = "my-pixel-art.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
 }
